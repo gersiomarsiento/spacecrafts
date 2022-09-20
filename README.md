@@ -12,7 +12,7 @@ This web-app was designed using:
 **MongoDB**\
 **Mongoose**\
 **jQuery**\
-**EJS**\
+**EJS**
 
 The app contains a 'seeds' folder that can be run with Node in order to delete all items from the DB and populate with 3 ships of each of the 3 ship types.
 
