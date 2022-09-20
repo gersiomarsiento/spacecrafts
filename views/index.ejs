@@ -1,0 +1,127 @@
+<% layout("../layouts/boilerplate.ejs") %> 
+<div class="nav-container">
+    <nav>
+        <a href="#spacecrafts-list">List of Spacecrafts</a>
+        <a href="/add">Add a Spacecraft</a>
+    </nav>
+</div>
+    <div id="lead">
+        <div class="lead-content">
+            <h1>Space Race Universe</h1>
+            <h5>All about spaceships in one place</h5>
+        </div>
+    </div>
+    <div class="filter-section">
+        <h2  id="spacecrafts-list">List of Spacecrafts</h2>
+        <button class="btn btn-warning" onclick="showFilters()">View Filters</button>
+        <form class="search-form bg-warning text-black" onsubmit="event.preventDefault()">
+            <!-- Selector for each type of ship -->
+            <label for="type" class="title">Ship Type: </label>
+            <select type="text" name="type" id="type" class="ship-type-selector search-type" placeholder="Start typing something...">
+                <option selected>None specified</option>
+                <option value="1">Launch Vehicle</option>
+                <option value="2">Robotic Spacecraft</option>
+                <option value="3">Crewed Spacecraft</option>
+            </select>
+            <label for="name" class="title">Name:</label>
+            <input type="text" class="search-input search-name" name="name" id="name" placeholder="Start typing something...">
+            <div class="filterInputs launchVehicleInputs">
+                
+                <label for="mass" class="title">Mass (in tons):</label>
+                <label for="minMass">Min:</label>
+                <input type="number" max="999999" name="minMass" class="search-input search-mass search-min" placeholder="Start typing something...">
+                <label for="maxMass">Max:</label>
+                <input type="number" max="999999" name="maxMass" class="search-input search-mass search-max" placeholder="Start typing something...">
+                
+                <label for="height" class="title">Height (in mts):</label>
+                <label for="minHeight">Min:</label>
+                <input type="number" max="999999" name="minHeight" class="search-input search-height" placeholder="Start typing something...">
+                <label for="maxHeight">Max:</label>
+                <input type="number" max="999999" name="maxHeight" class="search-input search-height" placeholder="Start typing something...">
+                
+                <label for="thrust" class="title">Thrust (in kN):</label>
+                <label for="minThrust">Min:</label>
+                <input type="number" max="999999" name="minThrust" class="search-input search-thrust" placeholder="Start typing something...">
+                <label for="maxThrust">Max:</label>
+                <input type="number" max="999999" name="maxThrust" class="search-input search-thrust" placeholder="Start typing something...">
+                
+                <label for="capacity" class="title">Capacity (in kg):</label>
+                <label for="minCapacity">Min:</label>
+                <input type="number" max="999999" name="minCapacity" class="search-input search-capacity" placeholder="Start typing something...">
+                <label for="maxCapacity">Max:</label> 
+                <input type="number" max="999999" name="maxCapacity" class="search-input search-capacity" placeholder="Start typing something...">
+            </div>
+            <div class="filterInputs roboticSpacecraftInputs">
+                
+                <label for="thrust" class="title">Thrust (in kN):</label>
+                <label for="minThrust">Min:</label>
+                <input type="number" max="999999" name="minThrust" class="search-input search-thrust" placeholder="Start typing something...">
+                <label for="maxThrust">Max:</label> 
+                <input type="number" max="999999" name="maxThrust" class="search-input search-thrust" placeholder="Start typing something...">
+                <label for="destination" class="title">Destination:</label>
+                <input type="text" name="destination" class="search-input search-destination" placeholder="Start typing something...">
+            </div>
+            <div class="filterInputs crewedSpacecraftInputs">
+                
+                <label for="mass" class="title">Mass (in tons):</label>
+                <label for="minMass">Min:</label>
+                <input type="number" max="999999" name="minMass" class="search-input search-mass" placeholder="Start typing something...">
+                <label for="maxMass">Max:</label> 
+                <input type="number" max="999999" name="maxMass" class="search-input search-mass" placeholder="Start typing something...">
+                
+                <label for="orbit" class="title">Orbits at (distance in km):</label>
+                <label for="minOrbit">Min:</label>
+                <input type="number" max="999999" name="minOrbit" class="search-input search-orbit" placeholder="Start typing something...">
+                <label for="maxOrbit">Max:</label> 
+                <input type="number" max="999999" name="maxOrbit" class="search-input search-orbit" placeholder="Start typing something...">
+                
+                <label for="crewMembers" class="title">Crew Members:</label>
+                <label for="minCrewMembers">Min:</label>
+                <input type="number" max="999999" name="minCrewMembers" class="search-input search-crewMembers" placeholder="Start typing something...">
+                <label for="maxCrewMembers">Max:</label> 
+                <input type="number" max="999999" name="maxCrewMembers" class="search-input search-crewMembers" placeholder="Start typing something...">
+            </div>
+        </form>
+    </div>
+
+
+    <div class="list-container">
+        <!-- Go through each ship type and create a card for each ship stored in the DB -->
+        <% launchVehicles.forEach(ship => { %>
+            <div class="card ship-card box-shadow-red" data-type="Launch Vehicle" data-name="<%= ship.name %>" data-mass="<%= ship.mass %>" data-height="<%= ship.height %>" data-thrust="<%= ship.thrust %>" data-capacity="<%= ship.capacity %>">
+                <img src="https://images.unsplash.com/photo-1625517682405-45c4563ad1bd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" class="card-img-top" alt="">
+                <div class="card-body bg-black">
+                    <h4 class="card-title"> <%= ship.name %> </h4>
+                    <h5 class="text-muted">Launch Vehicle</h5>
+                    <p class="card-text">
+                        <%= ship.reportSelf() %> 
+                    </p>
+                </div>
+            </div>
+        <% }) %>
+        
+        <% roboticSpacecrafts.forEach(ship => { %>
+            <div class="card ship-card box-shadow-green" data-type="Robotic Spacecraft" data-name="<%= ship.name %>" data-thrust="<%= ship.thrust %>" data-destination="<%= ship.destination %>">
+                <img src="https://images.unsplash.com/photo-1571842068535-9d7c7c1ddb18?ixlib=rb-1.2.1ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=864&q=80" class="card-img-top" alt="">
+                <div class="card-body">
+                    <h4 class="card-title"> <%= ship.name %> </h4>
+                    <h5 class="text-muted">Robotic Spacecraft</h5>
+                    <p class="card-text">
+                        <%= ship.reportSelf() %> 
+                    </p>
+                </div>
+            </div>
+        <% }) %>
+        <% crewedSpacecrafts.forEach(ship => { %>
+            <div class="card ship-card box-shadow-blue" data-type="Crewed Spacecrafts" data-name="<%= ship.name %>" data-mass="<%= ship.mass %>" data-orbit="<%= ship.orbit %>" data-crewMembers="<%= ship.crewMembers %>">
+                <img src="https://images.unsplash.com/photo-1581901811881-2695b594d5ec?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" class="card-img-top" alt="">
+                <div class="card-body bg-warning text-black">
+                    <h4 class="card-title"> <%= ship.name %> </h4>
+                    <h5 class="text-muted">Crewed Spacecraft</h5>
+                    <p class="card-text">
+                        <%= ship.reportSelf() %> 
+                    </p>
+                </div>
+            </div>
+        <% }) %>
+    </div>

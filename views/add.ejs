@@ -1,0 +1,77 @@
+<% layout("../layouts/boilerplate.ejs") %> 
+<div class="nav-container">
+    <nav>
+        <a href="/index#spacecrafts-list">List of Spacecrafts</a>
+        <a href="#add-ship-selector">Add a Spacecraft</a>
+    </nav>
+</div>
+
+<div class="lead-add">
+    <div class="lead-content">
+        <h2 class="m-5" id="spacecrafts-list">Add a Spacecraft</h2>
+    </div>
+</div>
+<div class="add-form-section">
+    <label for="shipType"></label>
+    <select class="form-select ship-type-selector" id="add-ship-selector" aria-label="Ship type">
+        <option selected>Select the Spacecraft Type</option>
+        <option value="1">Launch Vehicle</option>
+        <option value="2">Robotic Spacecraft</option>
+        <option value="3">Crewed Spacecraft</option>
+    </select>
+
+    <form action="/add" method="POST" class="m-5 box-shadow-black ">
+        <div class="form-group launchVehicleInputsForm" id="launchVehicle">
+            <img src="https://images.unsplash.com/photo-1625517682405-45c4563ad1bd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80">
+            <div class="inputs-container">
+                <input type="hidden" name="type" value="LaunchVehicle">
+                <label for="name">Name</label>
+                <input type="text" name="ship[name]" required>
+                <label for="mass">Mass (in tons)</label>
+                <input type="number" name="ship[mass]" required>
+                <label for="height">Height (in mts)</label>
+                <input type="number" name="ship[height]" required>
+                <label for="thrust">Thrust (in kN)</label>
+                <input type="number" name="ship[thrust]" required>
+                <label for="capacity">Capacity (in kg)</label>
+                <input type="number" name="ship[capacity]" required>
+                <button class="btn btn-success mt-4">Submit</button>
+            </div>
+        </div>
+    </form>
+
+    <form action="/add" method="POST" class="m-5 box-shadow-black">
+        <div class="form-group roboticSpacecraftInputsForm" id="roboticSpacecraft">
+            <img src="https://images.unsplash.com/photo-1571842068535-9d7c7c1ddb18?ixlib=rb-1.2.1ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=864&q=80">
+            <div class="inputs-container">
+                <input type="hidden" name="type" value="RoboticSpacecraft">
+                <label for="name">Name</label>
+                <input type="text" name="ship[name]" required>
+                <label for="thrust">Thrust (in kN)</label>
+                <input type="number" name="ship[thrust]" required>
+                <label for="destination">Destination</label>
+                <input type="text" name="ship[destination]" required>
+                <button class="btn btn-success mt-4">Submit</button>
+            </div>
+        </div>
+    </form>
+
+    <form action="/add" method="POST" class="m-5 box-shadow-black">
+        <div class="form-group crewedSpacecraftInputsForm" id="crewedSpacecraft">
+            <img src="https://images.unsplash.com/photo-1581901811881-2695b594d5ec?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80">
+            <div class="inputs-container">
+                <input type="hidden" name="type" value="CrewedSpacecraft">
+                <label for="name">Name</label>
+                <input type="text" name="ship[name]" required>
+                <label for="mass">Mass (in tons)</label>
+                <input type="number" name="ship[mass]" required>
+                <label for="orbit">Orbits at (distance in km)</label>
+                <input type="number" name="ship[orbit]" required>
+                <label for="crewMembers">Crew Members</label>
+                <input type="number" name="ship[crewMembers]" required>
+                <button class="btn btn-success mt-4">Submit</button>
+            </div>
+        </div>
+    </form>
+
+</div>
