@@ -181,12 +181,12 @@ input, select, #add-ship-selector{
     font-weight: 800;
     color: #272727;
 }
-.launchVehicleInputsForm {
+.launchVehicleInputsForm:not(.filterInputs) {
     background-color: rgba(200,50,30,.75);
 }
-.roboticSpacecraftInputsForm {
+.roboticSpacecraftInputsForm:not(.filterInputs)  {
     background-color: rgba(33,115,30,.75);
 }
-.crewedSpacecraftInputsForm {
+.crewedSpacecraftInputsForm:not(.filterInputs)  {
     background-color: rgba(33,145,200,.75);
 }
