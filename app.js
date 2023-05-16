@@ -4,10 +4,13 @@ const app = express();
 const path = require('path');
 const ejsMate = require("ejs-mate");
 const mongoose = require('mongoose');
-
+if(process.env.NODE_ENV !== 'production'){
+    require('dotenv').config()
+}
 
 // DB setup
-const dbUrl = 'mongodb://localhost:27017/spaceships'
+const dbUrl = process.env.DB_URL 
+// || 'mongodb://127.0.0.1:27017/spaceships'
 mongoose.connect(dbUrl)
 
 const db = mongoose.connection; //Connect to Database, log if error 
