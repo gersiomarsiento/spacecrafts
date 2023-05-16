@@ -9,8 +9,7 @@ if(process.env.NODE_ENV !== 'production'){
 }
 
 // DB setup
-const dbUrl = process.env.DB_URL 
-// || 'mongodb://127.0.0.1:27017/spaceships'
+const dbUrl = process.env.DB_URL || 'mongodb://127.0.0.1:27017/spaceships'
 mongoose.connect(dbUrl)
 
 const db = mongoose.connection; //Connect to Database, log if error 
